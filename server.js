@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const userRouter = require('./routes/users')
+app.set('view engine', 'ejs');
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

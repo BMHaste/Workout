@@ -31,7 +31,13 @@ router
         res.sendFile(path.join(__dirname, '..', 'views', 'login.html'));
     })
     .post(async (req, res) => {
-        
+        const { username, password } = req.body;
+        const existingUser = await User.findOne({ username, password });
+        if (existingUser) {
+            return res.status(400).render('homepage', { username: req.body.username })
+        }else{
+            res.sendFile(path.join(__dirname, '..', 'views', 'incorrect.html'));
+        }
       });
 
 const mongoose = require('mongoose');
