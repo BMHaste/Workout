@@ -7,5 +7,15 @@
 </head>
 <body>
     <h1>Welcome <%= username %>!</h1>
+    <form id="form" action="/users/homepage" method="POST">
+        <div>
+            <input type="text" name="workout" id="workout-input" placeholder="Workout">
+        </div>
+        <div>
+            <input type="text" name="weight" id="weight-input" placeholder="Weight">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="leaderboard" class="button">Leaderboard</a>
 </body>
 </html>
