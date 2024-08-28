@@ -34,7 +34,7 @@ router
         const { username, password } = req.body;
         const existingUser = await User.findOne({ username });
         if (existingUser) {
-            return res.sendFile(path.join(__dirname, '..', 'views', 'signupFail.html'));
+            return res.render('signUpErr')
         }
         const newUser = new User({ username, password });
         await newUser.save();
@@ -54,13 +54,17 @@ router
             req.session.username = req.body.username;
             return res.redirect('/users/homepage')
         }else{
-            res.sendFile(path.join(__dirname, '..', 'views', 'incorrect.html'));
+            return res.render('loginErr')
         }
       });
 router
     .route("/homepage")
-    .get((req, res) => {
-        return res.render('homepage', { username: req.session.username })
+    .get(async (req, res) => {
+        let user_data = await User.findOne({ username: req.session.username });
+        return res.render('homepage', { 
+            username: req.session.username,
+            user: user_data
+        })
     })
     .post(async (req, res) => {
         const {workout, weight } = req.body;
