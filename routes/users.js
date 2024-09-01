@@ -20,8 +20,11 @@ mongoose.connect('mongodb://localhost:27017/userDataDB');
 const userSchema = new mongoose.Schema({
       username: String,
       password: String,
+      cateogry: [String],
       workouts: [String],
       weights: [Number],
+      reps: [Number],
+      sets: [Number]
     });
 const User = mongoose.model('User', userSchema);
 
@@ -82,9 +85,9 @@ router
         }
       });
 router
-    .route("/workouts")
+    .route("/newWorkout")
     .get((req, res) => {
-        return res.render('workouts', { workouts: req.session.workouts, weights: req.session.weights })
+        return res.render('newWorkout', { workouts: req.session.workouts, weights: req.session.weights })
     })
     .post(async (req, res) => {
     });

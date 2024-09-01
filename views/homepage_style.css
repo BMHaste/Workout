@@ -4,7 +4,12 @@
 }
 body{
     min-height: 100vh;
+    background-image: url(/pictures/background.jpg);
+    background-size: cover;
+    overflow: hidden;
+    opacity: 0.95;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:white;
 }
 nav{
     background-color: white;
@@ -33,4 +38,26 @@ nav a:hover{
 }
 nav li:first-child{
     margin-right: auto;
+}
+#stats{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#push{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+#pull{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+#legs{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
 }

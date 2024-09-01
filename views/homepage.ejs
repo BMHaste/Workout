@@ -12,16 +12,39 @@
         <ul>
             <li><a onclick="location.reload();">Hi <%= username %>!</a></li>
             <li><a href="newWorkout">New Workout</a></li>
-            <li><a href="new_workout">Compete</a></li>
+            <li><a href="">Compete</a></li>
             <li><a href="leaderboard">Leaderboard</a></li>
             <li><a href="login">Logout</a></li>
         </ul>
     </nav>
-    <tr>
-        <td><%= user.username %></td>
-        <td><%= user.password %></td>
-        <td><%= user.workouts && user.workouts.length > 0 ? user.workouts.join(', ') : 'No workouts recorded' %></td>
-        <td><%= user.weights && user.weights.length > 0 ? user.weights.join(', ') : 'No weights recorded' %></td>
-    </tr>
+    <div id="stats">
+        <ul id="push">
+            <% if (user && user.workouts) { %>
+                <% for (let i = 0; i < user.workouts.length; i++) { %>
+                    <li><%= user.workouts[i] %> - <%= user.weights[i] %></li>
+                <% } %>
+            <% } else { %>
+                <li>No workouts available.</li>
+            <% } %>
+        </ul>
+        <ul id="pull">
+            <% if (user && user.workouts) { %>
+                <% for (let i = 0; i < user.workouts.length; i++) { %>
+                    <li><%= user.workouts[i] %> - <%= user.weights[i] %></li>
+                <% } %>
+            <% } else { %>
+                <li>No workouts available.</li>
+            <% } %>
+        </ul>
+        <ul id="legs">
+            <% if (user && user.workouts) { %>
+                <% for (let i = 0; i < user.workouts.length; i++) { %>
+                    <li><%= user.workouts[i] %> - <%= user.weights[i] %></li>
+                <% } %>
+            <% } else { %>
+                <li>No workouts available.</li>
+            <% } %>
+        </ul>
+    </div>
 </body>
 </html>
