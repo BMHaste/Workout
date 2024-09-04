@@ -105,7 +105,55 @@ router
     })
     .post(async (req, res) => {
     });
-
+router
+    .route("/removeWorkout")
+    .get( async (req, res) => {
+        const users = await User.find({})
+        return res.render('removeWorkout', {users})
+    })
+    .post(async (req, res) => {
+        const {category, workout} = req.body;
+        current_user = req.session.username;
+        let user = await User.findOne({ username: current_user });
+        if (user) {
+            let index = -1; 
+            for (let i = 0; i < user.workouts.length; i++) {
+                if (user.workouts[i] === workout && user.category[i] === category) {
+                    index = i;
+                    break; 
+                }
+            }
+            if (index !== -1) { 
+                user.workouts.splice(index, 1);
+                user.category.splice(index, 1);
+                user.weights.splice(index, 1);
+                user.reps.splice(index, 1);
+                user.sets.splice(index, 1);
+                
+                await user.save();
+                req.session.category = user.category;
+                req.session.workouts = user.workouts;
+                req.session.weights = user.weights;
+                req.session.reps = user.reps;
+                req.session.sets = user.sets;
+            }
+            return res.redirect('/users/homepage')
+        }else{
+            res.status(500).send('Internal Server Error');
+        }
+    });
+router
+    .route("/logout")
+    .get( (req, res) => {
+        req.session.destroy(err => {
+            if (err) {
+                return res.status(500).send('Failed to log out.');
+            }
+            res.redirect('/users/login');
+        });
+    })
+    .post(async (req, res) => {
+    });
 
 
 module.exports = router;
