@@ -39,7 +39,38 @@ nav a:hover{
 nav li:first-child{
     margin-right: auto;
 }
+
+#wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+#labels{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    font-size: 50px;
+    text-align: center;
+    gap: 10px;
+}
+
+#PUSH{
+    flex: 1;
+    align-items: center;
+}
+
+#PULL{
+    flex: 1;
+    align-items: center;
+}
+
+#LEGS{
+    flex: 1;
+    align-items: center;
+}
+
 #stats{
+    flex: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -49,15 +80,22 @@ nav li:first-child{
     flex: 1;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    list-style-type: none;
 }
 #pull{
     flex: 1;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    list-style-type: none;
+
 }
 #legs{
     flex: 1;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    text-align: center;
+    list-style-type: none;
+
 }

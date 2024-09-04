@@ -11,7 +11,7 @@ router.use( express.static('../validation.js'))
 router.use(session({
     secret: 'chungus',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {secure: false}
 }));
 
@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/userDataDB');
 const userSchema = new mongoose.Schema({
       username: String,
       password: String,
-      cateogry: [String],
+      category: [String],
       workouts: [String],
       weights: [Number],
       reps: [Number],
@@ -70,26 +70,32 @@ router
         })
     })
     .post(async (req, res) => {
-        const {workout, weight } = req.body;
-        current_user = req.session.username;
-        let user = await User.findOne({ username: current_user });
-        if (user) {
-            user.workouts.push(workout);
-            user.weights.push(weight);
-            await user.save();
-            req.session.workouts = user.workouts;
-            req.session.weights = user.weights;
-            return res.redirect('/users/workouts')
-        }else{
-            res.status(500).send('Internal Server Error');
-        }
       });
 router
     .route("/newWorkout")
     .get((req, res) => {
-        return res.render('newWorkout', { workouts: req.session.workouts, weights: req.session.weights })
+        return res.render('newWorkout')
     })
     .post(async (req, res) => {
+        const {category, workout, weight, reps, sets } = req.body;
+        current_user = req.session.username;
+        let user = await User.findOne({ username: current_user });
+        if (user) {
+            user.category.push(category);
+            user.workouts.push(workout);
+            user.weights.push(weight);
+            user.reps.push(reps);
+            user.sets.push(sets);
+            await user.save();
+            req.session.category = user.category;
+            req.session.workouts = user.workouts;
+            req.session.weights = user.weights;
+            req.session.reps = user.reps;
+            req.session.sets = user.sets;
+            return res.redirect('/users/homepage')
+        }else{
+            res.status(500).send('Internal Server Error');
+        }
     });
 router
     .route("/leaderboard")

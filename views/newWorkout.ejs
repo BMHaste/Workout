@@ -7,12 +7,21 @@
     <title>New Workout</title>
 </head>
 <body>
-    <form id="form" action="/users/homepage" method="POST">
+    <form id="form" action="/users/newWorkout" method="POST">
+        <div>
+            <input type="text" name="category" id="category-input" placeholder="Category">
+        </div>
         <div>
             <input type="text" name="workout" id="workout-input" placeholder="Workout">
         </div>
         <div>
-            <input type="text" name="weight" id="weight-input" placeholder="Weight">
+            <input type="number" name="weight" id="weight-input" placeholder="Weight">
+        </div>
+        <div>
+            <input type="number" name="reps" id="reps-input" placeholder="Reps">
+        </div>
+        <div>
+            <input type="number" name="sets" id="sets-input" placeholder="Sets">
         </div>
         <button type="submit">Submit</button>
     </form> 

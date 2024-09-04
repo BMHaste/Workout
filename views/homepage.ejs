@@ -17,34 +17,50 @@
             <li><a href="login">Logout</a></li>
         </ul>
     </nav>
-    <div id="stats">
-        <ul id="push">
-            <% if (user && user.workouts) { %>
-                <% for (let i = 0; i < user.workouts.length; i++) { %>
-                    <li><%= user.workouts[i] %> - <%= user.weights[i] %></li>
+    <div id="wrapper">
+        <div id="labels">
+            <div id="PUSH">PUSH</div>
+            <div id="PULL">PULL</div>
+            <div id="LEGS">LEGS</div>
+        </div>
+        <div id="stats">
+            <ul id="push">
+                <% if (user && user.workouts) { %>
+                    <% user.workouts.forEach((workout, index) => { %>
+                        <% if (user.category[index] == "Push") { %>
+                            <li><%= workout %> - <%= user.weights[index] %>lbs 
+                                - Sets: <%= user.sets[index] %> Reps: <%= user.reps[index] %></li>
+                        <% } %>
+                    <% }); %>
+                <% } else { %>
+                    <li>No workouts available.</li>
                 <% } %>
-            <% } else { %>
-                <li>No workouts available.</li>
-            <% } %>
-        </ul>
-        <ul id="pull">
-            <% if (user && user.workouts) { %>
-                <% for (let i = 0; i < user.workouts.length; i++) { %>
-                    <li><%= user.workouts[i] %> - <%= user.weights[i] %></li>
+            </ul>
+            <ul id="pull">
+                <% if (user && user.workouts) { %>
+                    <% user.workouts.forEach((workout, index) => { %>
+                        <% if (user.category[index] == "Pull") { %>
+                            <li><%= workout %> - <%= user.weights[index] %>lbs
+                                - Sets: <%= user.sets[index] %> Reps: <%= user.reps[index] %></li>
+                        <% } %>
+                    <% }); %>
+                <% } else { %>
+                    <li>No workouts available.</li>
                 <% } %>
-            <% } else { %>
-                <li>No workouts available.</li>
-            <% } %>
-        </ul>
-        <ul id="legs">
-            <% if (user && user.workouts) { %>
-                <% for (let i = 0; i < user.workouts.length; i++) { %>
-                    <li><%= user.workouts[i] %> - <%= user.weights[i] %></li>
+            </ul>
+            <ul id="legs">
+                <% if (user && user.workouts) { %>
+                    <% user.workouts.forEach((workout, index) => { %>
+                        <% if (user.category[index] == "Legs") { %>
+                            <li><%= workout %> - <%= user.weights[index] %>lbs
+                                - Sets: <%= user.sets[index] %> Reps: <%= user.reps[index] %></li>
+                        <% } %>
+                    <% }); %>
+                <% } else { %>
+                    <li>No workouts available.</li>
                 <% } %>
-            <% } else { %>
-                <li>No workouts available.</li>
-            <% } %>
-        </ul>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
