@@ -9,14 +9,17 @@ router.use( express.static(path.join(__dirname, '..', 'views')));
 router.use( express.static(path.join(__dirname, '..', 'pictures')));
 router.use( express.static('../validation.js'))
 router.use(session({
-    secret: 'chungus',
+    secret: 'lonelymoose',
     resave: false,
     saveUninitialized: true,
     cookie: {secure: false}
 }));
 
+require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/userDataDB');
+// mongoose.connect('mongodb://localhost:27017/userDataDB');
+mongoose.connect(process.env.MONGODB_URI);
+
 const userSchema = new mongoose.Schema({
       username: String,
       password: String,
