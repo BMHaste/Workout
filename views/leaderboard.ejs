@@ -2,38 +2,54 @@
 <html>
 <head>
     <link rel="icon" type="image/x-icon" href="weight.svg">
+    <link rel="stylesheet" href="leaderstyles.css">
     <title>Leaderboard</title>
-    <style>
-        /* Add some basic styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 <body>
-    <h1>Users List</h1>
+    <h1>LEADERBOARD</h1>
     <table>
         <thead>
             <tr>
                 <th>Username</th>
-                <th>Password</th>
-                <th>Weights</th>
+                <th>Push</th>
+                <th>Pull</th>
+                <th>Legs</th>
             </tr>
         </thead>
         <tbody>
             <% users.forEach(user => { %>
                 <tr>
                     <td><%= user.username %></td>
-                    <td><%= user.password %></td>
-                    <td><%= user.weights.join(', ') %></td>
+                    <td><% if (user && user.workouts) { %>
+                        <% user.workouts.forEach((workout, index) => { %>
+                            <% if (user.category[index] == "Push") { %>
+                                <li><%= workout %> - <%= user.weights[index] %>lbs 
+                                    - Sets: <%= user.sets[index] %> Reps: <%= user.reps[index] %></li>
+                            <% } %>
+                        <% }); %>
+                    <% } else { %>
+                        <li>No workouts available.</li>
+                    <% } %></td>
+                    <td><% if (user && user.workouts) { %>
+                        <% user.workouts.forEach((workout, index) => { %>
+                            <% if (user.category[index] == "Pull") { %>
+                                <li><%= workout %> - <%= user.weights[index] %>lbs 
+                                    - Sets: <%= user.sets[index] %> Reps: <%= user.reps[index] %></li>
+                            <% } %>
+                        <% }); %>
+                    <% } else { %>
+                        <li>No workouts available.</li>
+                    <% } %></td>
+                    <td><% if (user && user.workouts) { %>
+                        <% user.workouts.forEach((workout, index) => { %>
+                            <% if (user.category[index] == "Legs") { %>
+                                <li><%= workout %> - <%= user.weights[index] %>lbs 
+                                    - Sets: <%= user.sets[index] %> Reps: <%= user.reps[index] %></li>
+                            <% } %>
+                        <% }); %>
+                    <% } else { %>
+                        <li>No workouts available.</li>
+                    <% } %></td>
                 </tr>
             <% }) %>
         </tbody>
