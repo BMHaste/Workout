@@ -2,7 +2,8 @@
 ## Description
 This website allows individuals to keep track of their workouts and see the progress of their competition as well.
 ## Features
-- 
+- Compete with other users to move up in the leaderboard(In Progress)
+- See how you compare to other users with a leaderboard displaying the stats of everyone
 ## Installation
 - Clone the repository
 - Add a .env file to the root
@@ -18,3 +19,4 @@ This website allows individuals to keep track of their workouts and see the prog
 - EJS
 - Node.js
 - Express.js
+- MongoDB
