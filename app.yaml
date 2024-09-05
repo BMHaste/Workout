@@ -1,0 +1,4 @@
+runtime: nodejs20  # Use the latest LTS version of Node.js available
+handlers:
+  - url: /.*
+    script: auto

@@ -34,7 +34,7 @@ const User = mongoose.model('User', userSchema);
 router
     .route("/signup")
     .get((req, res) => {
-        res.sendFile(path.join(__dirname, '..', 'views', 'signup.html'));
+        res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
     })
     .post(async (req, res) => {
         const { username, password } = req.body;
