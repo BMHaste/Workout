@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname)));
 
 app.use('/users', userRouter)
 
+app.get('/', (req, res) => {
+  res.redirect('/users/signup');
+});
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
